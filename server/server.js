@@ -4,31 +4,20 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-  // const io = new Server(server, {
-  //   cors: {
-  //     origin: (origin, callback) => {
-  //       if (!origin) return callback(null, true);
-        
-  //       if (process.env.NODE_ENV !== 'production') return callback(null, true);
-        
-  //       if (origin.endsWith('.vercel.app') || origin === 'https://vercel.app' || origin.startsWith('http://localhost')) {
-  //         callback(null, true);
-  //       } else {
-  //         callback(new Error('Not allowed by CORS'), false);
-  //       }
-  //     },
-  //     methods: ["GET", "POST"],
-  //     credentials: true
-  //   }
-  // });
 
-  const io = new Server(server, {
-    cors: {
-      origin: '*', 
-      methods: ["GET", "POST"],
-      credentials: true
-    }
-  });
+// Setup Socket.IO
+const io = new Server(server, {
+  cors: {
+    origin: '*', 
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
+
+// Keep the 'Server is running' endpoint
+app.get('*', (req, res) => {
+  res.status(200).send('Server is running');
+});
 
 const rooms = {};
 
@@ -61,7 +50,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('codeChange', ({ room, code }) => {
-    // console.log(`Received codeChange event. Room: ${room}, Code: ${code.substring(0, 20)}...`);
     socket.to(room).emit('codeChange', code);
   });
 
@@ -95,18 +83,26 @@ io.on('connection', (socket) => {
   });
 });
 
-// const PORT = process.env.PORT || 3001;
-// server.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+// exports.handler = async (event, context) => {
+//   // Check if this is a WebSocket request
+//   if (event.headers['Upgrade'] === 'websocket') {
+//     // Handle WebSocket connection
+//     const connection = await io.on('connection', socket => {
+//       // WebSocket connection handling is already defined above
+//     });
+//     return {
+//       statusCode: 200,
+//       body: 'WebSocket connected'
+//     };
+//   } else {
+//     // Handle HTTP request
+//     return handler(event, context);
+//   }
+// };
 
-app.get('*', (req, res) => {
-  res.status(200).send('Server is running');
-});
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT || 3001;
-server.listen(port, () => {
+// Listen on `port` and 0.0.0.0
+server.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
 });
-
-

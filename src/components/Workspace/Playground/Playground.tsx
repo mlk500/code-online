@@ -24,11 +24,7 @@ const Playground: React.FC<PlaygroundProps> = ({ question, setRole }) => {
     const [showSmiley, setShowSmiley] = useState(false);
     const [isMentor, setIsMentor] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
-    const socket: Socket = io(getServerUrl(), {
-        transports: ['websocket'],
-        upgrade: false,
-        forceNew: true
-    });
+    const socket = useSocket();
     const roleRef = useRef<string | null>(null);
     const router = useRouter();
 

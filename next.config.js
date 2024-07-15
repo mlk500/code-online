@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
   env: {
-    NEXT_PUBLIC_SERVER_URL: 'https://code-online-server-6xdt7697b-mlk500s-projects.vercel.app',
+    NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_UR,
+  },
+  images: {
+    unoptimized: true,
   },
 };
 
