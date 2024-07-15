@@ -15,5 +15,10 @@
         "X-Content-Type-Options": "nosniff"
       }
     }
-  ]
+  ], 
+  "git": {
+    "deploymentEnabled": {
+      "main": false
+    }
+  }
 }
