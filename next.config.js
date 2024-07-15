@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+    NEXT_PUBLIC_SERVER_URL: 'https://code-online-server-6xdt7697b-mlk500s-projects.vercel.app',
   },
 };
 
