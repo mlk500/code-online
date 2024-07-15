@@ -22,13 +22,6 @@ const server = http.createServer(app);
     }
   });
 
-  app.use((req, res, next) => {
-    res.setHeader(
-      'Content-Security-Policy',
-      "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;"
-    );
-    next();
-  });
 const rooms = {};
 
 io.on('connection', (socket) => {
@@ -94,11 +87,6 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.status(200).send('Server is running');
-});
-
-
 // const PORT = process.env.PORT || 3001;
 // server.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
@@ -108,3 +96,8 @@ const port = process.env.PORT || 3000;
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+app.get('*', (req, res) => {
+  res.status(200).send('Server is running');
+});
+

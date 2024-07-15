@@ -1,19 +1,18 @@
 {
-    "git": {
-      "deploymentEnabled": false
-    },
+    "version": 2,
     "builds": [
       { "src": "server.js", "use": "@vercel/node" }
     ],
     "routes": [
-      { "src": "/(.*)", "dest": "server.js" }
-    ],
-    "headers": [
       {
-        "source": "/(.*)",
-        "headers": [
-          { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;" }
-        ]
+        "src": "/(.*)",
+        "dest": "/server.js",
+        "headers": {
+          "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' ws: wss:;",
+          "X-Frame-Options": "DENY",
+          "X-XSS-Protection": "1; mode=block",
+          "X-Content-Type-Options": "nosniff"
+        }
       }
     ]
   }
