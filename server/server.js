@@ -4,19 +4,27 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
+  // const io = new Server(server, {
+  //   cors: {
+  //     origin: (origin, callback) => {
+  //       if (!origin) return callback(null, true);
+        
+  //       if (process.env.NODE_ENV !== 'production') return callback(null, true);
+        
+  //       if (origin.endsWith('.vercel.app') || origin === 'https://vercel.app' || origin.startsWith('http://localhost')) {
+  //         callback(null, true);
+  //       } else {
+  //         callback(new Error('Not allowed by CORS'), false);
+  //       }
+  //     },
+  //     methods: ["GET", "POST"],
+  //     credentials: true
+  //   }
+  // });
+
   const io = new Server(server, {
     cors: {
-      origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        
-        if (process.env.NODE_ENV !== 'production') return callback(null, true);
-        
-        if (origin.endsWith('.vercel.app') || origin === 'https://vercel.app' || origin.startsWith('http://localhost')) {
-          callback(null, true);
-        } else {
-          callback(new Error('Not allowed by CORS'), false);
-        }
-      },
+      origin: '*', 
       methods: ["GET", "POST"],
       credentials: true
     }
@@ -92,12 +100,13 @@ io.on('connection', (socket) => {
 //   console.log(`Server running on port ${PORT}`);
 // });
 
-const port = process.env.PORT || 3000;
+app.get('*', (req, res) => {
+  res.status(200).send('Server is running');
+});
+
+const port = process.env.PORT || 3001;
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-app.get('*', (req, res) => {
-  res.status(200).send('Server is running');
-});
 

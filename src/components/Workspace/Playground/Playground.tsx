@@ -26,7 +26,8 @@ const Playground: React.FC<PlaygroundProps> = ({ question, setRole }) => {
     const [isDisabled, setIsDisabled] = useState(false);
     const socket: Socket = io(getServerUrl(), {
         transports: ['websocket'],
-        upgrade: false
+        upgrade: false,
+        forceNew: true
     });
     const roleRef = useRef<string | null>(null);
     const router = useRouter();
