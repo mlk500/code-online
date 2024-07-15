@@ -21,7 +21,7 @@ const Playground: React.FC<PlaygroundProps> = ({ question, setRole }) => {
     const [showSmiley, setShowSmiley] = useState(false);
     const [isMentor, setIsMentor] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
-    const socket = useSocket(process.env.NEXT_PUBLIC_SERVER_URL || '');
+    const socket = useSocket("https://code-online-server-6xdt7697b-mlk500s-projects.vercel.app");
     const roleRef = useRef<string | null>(null);
     const router = useRouter();
 
