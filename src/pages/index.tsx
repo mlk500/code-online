@@ -2,6 +2,7 @@ import QuestionsTable from "@/components/QuestionsTable/QuestionsTable";
 import Topbar from "@/components/Topbar/Topbar";
 
 export default function Home() {
+  console.log('Server URL:', process.env.NEXT_PUBLIC_SERVER_URL);
   return (
     <div className="bg-dark-layer-2 min-h-screen">
       <main>
