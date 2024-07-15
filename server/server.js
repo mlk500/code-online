@@ -4,12 +4,23 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
-    methods: ["GET", "POST"]
-  }
-});
+  const io = new Server(server, {
+    cors: {
+      origin: (origin, callback) => {
+        if (!origin) return callback(null, true);
+        
+        if (process.env.NODE_ENV !== 'production') return callback(null, true);
+        
+        if (origin.endsWith('.vercel.app') || origin === 'https://vercel.app' || origin.startsWith('http://localhost')) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'), false);
+        }
+      },
+      methods: ["GET", "POST"],
+      credentials: true
+    }
+  });
 
 const rooms = {};
 
@@ -74,6 +85,10 @@ io.on('connection', (socket) => {
     }
     console.log('Updated rooms:', rooms);
   });
+});
+
+app.get('/health', (req, res) => {
+  res.status(200).send('Server is running');
 });
 
 

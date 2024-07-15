@@ -6,9 +6,12 @@ import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
 import Confetti from 'react-confetti';
+import { io, Socket } from "socket.io-client";
 import useSocket from '@/hooks/useSocket';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import { getServerUrl } from '../../../../config';
+
 
 type PlaygroundProps = {
     question: Question;
@@ -21,7 +24,10 @@ const Playground: React.FC<PlaygroundProps> = ({ question, setRole }) => {
     const [showSmiley, setShowSmiley] = useState(false);
     const [isMentor, setIsMentor] = useState(false);
     const [isDisabled, setIsDisabled] = useState(false);
-    const socket = useSocket("https://code-online-server-6xdt7697b-mlk500s-projects.vercel.app");
+    const socket: Socket = io(getServerUrl(), {
+        transports: ['websocket'],
+        upgrade: false
+    });
     const roleRef = useRef<string | null>(null);
     const router = useRouter();
 
