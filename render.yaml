@@ -1,0 +1,29 @@
+services:
+  # Frontend Next.js service
+  - type: web
+    name: online-coding-frontend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: NEXT_PUBLIC_SOCKET_URL
+        # value: https://online-coding-backend.onrender.com # Replace with your backend URL
+
+  # Backend service
+  - type: web
+    name: online-coding-backend
+    env: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8080
+      - key: CORS_ORIGIN
+        # value: https://online-coding-frontend.onrender.com # Replace with your frontend URL
