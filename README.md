@@ -1,40 +1,56 @@
+# Code Online - Real-Time Collaborative Coding Platform
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+A LeetCode-inspired platform for real-time code mentoring sessions, built with Next.js and WebSocket technology. The platform enables mentors to observe and guide students through coding challenges in real-time.
+
+🔗 [Live Demo](https://online-coding-frontend.onrender.com) (Note: Initial load may take around 1 minute due to cold start)
+
+## Features
+
+### 🏠 Home Page
+- Collection of coding challenges with varying difficulty levels (inserted manually)
+- Problems categorized by type (Math, String, Bit Manipulation, etc.)
+- Difficulty indicators (Easy, Medium, Hard)
+
+<img width="600" alt="Home Page" src="https://github.com/user-attachments/assets/89b2e514-d650-4299-9d89-c48a83915648">
+
+### 👥 Real-Time Collaboration
+- First user to enter becomes the mentor
+- Second user joins as a student
+- Real-time code synchronization between mentor and student
+- Room capacity limited to 2 users
+
+<div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <img width="400" alt="Mentor View" src="https://github.com/user-attachments/assets/4857b671-22b7-4714-ba9f-9253b4c24da8">
+    <img width="400" alt="Student View" src="https://github.com/user-attachments/assets/b90339c7-2556-4773-8249-24eb69bdb591">
+</div>
+
+### 💻 Interactive Coding Environment
+- Syntax highlighting for JavaScript
+- Real-time code updates
+- Student can write and edit code
+- Mentor has read-only access
+
+<div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <img width="400" alt="Real-time Updates" src="https://github.com/user-attachments/assets/13f76be8-95ef-4717-8f39-4ba39aa5d2af">
+    <img width="400" alt="Success Feedback" src="https://github.com/user-attachments/assets/f3cb05dd-84c4-4461-bd16-083d3d163101">
+</div>
+
+## Technical Implementation
+
+### Built With
+- Next.js
+- WebSocket
+- JavaScript/TypeScript
+- Syntax highlighting
+
 ## Getting Started
+1. Wait for the initial server cold start (may take a moment)
+2. Select a coding challenge from the home page
+3. First user automatically becomes the mentor
+4. Share the URL with your student/mentor
+5. Start coding and collaborating in real-time
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Inspiration
+Design and functionality inspired by LeetCode, adapted for real-time mentoring sessions.
